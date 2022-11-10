@@ -1,0 +1,43 @@
+@import './reset/reset.css';
+@import './reset/normalize.css';
+@import './variables/global';
+@import './fonts/fonts';
+@import './variables/breakpoints';
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family-main);
+    font-size: var(--font-size-s);
+}
+
+#root {
+    font-size: 1%;
+}
+
+.app {
+    background-color: white;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.content-page {
+    display: flex;
+    width: 100%;
+    padding: 0 15px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+@media (max-width: $mobile-breakpoint) {
+    #root {
+        font-size: 1.2%;
+    }
+}

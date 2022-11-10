@@ -1,0 +1,27 @@
+.button, .background_white, .clear, .background_purple {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+    color: var(--color-secondary);
+}
+
+.clear {
+    background-color: transparent;
+}
+
+.background_white {
+    background-color: white;
+}
+
+.background_purple  {
+    background-color: var(--bg-color-primary);
+}
+
+.disabled {
+    opacity: 0.7;
+    pointer-events: none;
+}
