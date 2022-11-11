@@ -17,6 +17,7 @@ interface TableProps {
 const Table: FC<TableProps> = ({ className }) => {
   const events = useSelector(getEventsRenderEvents);
   const resources = useSelector(getEventsResources);
+  const [renderItems, setRenderItems] = useState(events);
 
   const dispatch = useAppDispatch();
 
@@ -34,9 +35,27 @@ const Table: FC<TableProps> = ({ className }) => {
     };
   }, [scrollHandler]);
 
+  useEffect(() => {
+    const newRenderItems = events?.map((event) => {
+      const newItems = event.items.map((item) => {
+        const resource = resources?.find((resourceItem) => {
+          const eventId = resourceItem.id.split('/')[1];
+          return eventId === item.id;
+        });
+        if (resource) {
+          return { ...item, details: resource.details, code: resource.code, values: resource.values };
+        }
+        return item;
+      });
+      return { ...event, items: newItems };
+    });
+
+    setRenderItems(newRenderItems);
+  }, [events, resources]);
+
   return (
     <div className={classNames(styles.table, {}, [className])}>
-      {events?.length
+      {renderItems?.length
         ? (
           <table>
             <thead>
@@ -48,9 +67,9 @@ const Table: FC<TableProps> = ({ className }) => {
               </tr>
             </thead>
             <tbody>
-              {events?.map(({ name, items }) => {
-                return items.map(({ id, date, details }, index) => {
-                  return <EventComponent key={id} name={index === 0 ? name : ''} date={date} details={details} />;
+              {renderItems?.map(({ name, items }) => {
+                return items.map((item, index) => {
+                  return <EventComponent key={item.id} index={index} item={item} />;
                 });
               })}
             </tbody>

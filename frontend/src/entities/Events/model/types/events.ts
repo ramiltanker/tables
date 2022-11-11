@@ -5,6 +5,8 @@ export interface EventItem {
   resource: string;
   date: string;
   details?: string;
+  values?: ResourceValue[] | string[];
+  code?: string;
 }
 
 export interface EventsSchema {

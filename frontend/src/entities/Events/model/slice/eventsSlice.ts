@@ -6,7 +6,6 @@ import {
   EventsSchema,
   EVENT_NAMES_WEIGHT,
   GroupedEvents,
-  Names,
   ResourceResponse
 } from '../types/events';
 import { checkIsSameDate } from 'shared/lib/checkIsSameDate/checkIsSameDate';
@@ -29,19 +28,6 @@ export const eventsSlice = createSlice({
         const begin = state.renderEvents!.length;
         const end = begin + 15;
         state.renderEvents = [...state.renderEvents!, ...state.groupedEvents!.slice(begin, end)];
-        // resources.forEach((resource) => {
-        //   const eventId = resource.id.split('/')[1];
-        //   events?.map((event) => {
-        //     const newEventItems = event.items.map((item) => {
-        //       if (eventId === item.id) {
-        //         return { ...item, details: resource.details };
-        //       }
-        //       return item;
-        //     });
-        //     console.log(newEventItems);
-        //     return { ...event, items: newEventItems };
-        //   });
-        // });
       }
     }
   },
@@ -60,9 +46,9 @@ export const eventsSlice = createSlice({
           const isAppointmentB = b.appointmentId ? 1 : 0;
           const Date1 = new Date(a.date).getTime();
           const Date2 = new Date(b.date).getTime();
-          if (isAppointmentA > isAppointmentB) return -1;
           if (Date1 > Date2) return -1;
           if (Date1 < Date2) return 1;
+          if (isAppointmentA > isAppointmentB) return -1;
           if (EVENT_NAMES_WEIGHT[a.name] > EVENT_NAMES_WEIGHT[b.name] && Date1 < Date2) return -1;
           if (EVENT_NAMES_WEIGHT[a.name] < EVENT_NAMES_WEIGHT[b.name]) return 1;
           return 0;
@@ -96,21 +82,6 @@ export const eventsSlice = createSlice({
       .addCase(fetchResourcesByIds.fulfilled, (state, action: PayloadAction<ResourceResponse>) => {
         state.isLoading = false;
         state.resources = action.payload.items;
-        let newRenderEvents: GroupedEvents[] | undefined;
-        // state.renderEvents = state.renderEvents?.map((event) => {
-        //   event.items.map((item) => {
-        //     const event = state.resources?.find((event) => {
-        //       const eventId = event.id.split('/')[1];
-        //       if (eventId === item.id) {
-        //         return event;
-        //       }
-        //       return event;
-        //     });
-        //     return { ...item, details: event?.details };
-        //   });
-        //   return event;
-        // });
-
         console.log(state.resources);
       })
       .addCase(fetchResourcesByIds.rejected, (state, action) => {
