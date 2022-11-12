@@ -1,23 +1,51 @@
 .event {
     border-top: 2px solid #E8E8E8;
+    margin-bottom: 2em;
+    padding-top: 1em;
 
-    .eventWithoutBorder {
+    &:first-child {
+        padding: 0;
         border-top: 0;
     }
 
-    td {
-        max-width: 30em;
-        color: var(--color-primary);
-        font-size: 1.5em;
-        padding: 1em 3em 1em 0;
+    .header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1em;
+    }
+
+    .main {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 2em;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
 
     .eventName {
+        font-size: 2em;
+        font-weight: 500;
         text-align: center;
-        padding: 0.5em 0;
-        border-radius: 10px;
+        padding: 0.5em 1em;
+        border-radius: 5px;
         border-width: 1px;
         border-style: solid;
+    }
+
+    .text {
+        font-size: 2em;
+        font-weight: 500;
+        max-width: 200px;
+    }
+
+    .code {
+        font-size: 2em;
+        font-weight: 500;
+        opacity: 0.5;
+        margin-left: 2em;
     }
 
     .appointment {
@@ -63,14 +91,5 @@
     .procedure {
         background-color: var(--yellow);
         border-color: var(--dark-yellow);
-    }
-
-    .boldDate {
-        font-weight: 600;
-    }
-
-    .normalDate {
-        font-weight: normal;
-        opacity: 0.7;
     }
 }

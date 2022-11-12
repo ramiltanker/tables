@@ -16,7 +16,7 @@ const EventComponent = memo(({ className, item, index }: EventComponentProps) =>
 
   const [year, month, day] = getDateValues(new Date(date));
 
-  const mods = {
+  const nameMods = {
     [styles[name.toLowerCase()]]: name,
     [styles.eventName]: index === 0
   };
@@ -26,29 +26,25 @@ const EventComponent = memo(({ className, item, index }: EventComponentProps) =>
     [styles.normalDate]: index !== 0
   };
 
-  console.log(values);
   const generateValues = useCallback(() => {
     if (values) {
-      if (typeof values === 'object') {
-        return values
-          .map((item: ResourceValue) => {
+      return values
+        .map((item) => {
+          if (typeof item === 'object') {
             return `${item.value} ${item.unit}`;
-          })
-          .join('');
-      } else {
-        return values
-          .map((item) => {
-            return item;
-          })
-          .join('');
-      }
+          } else {
+            return item === '---' ? '' : item;
+          }
+        })
+        .join('');
     }
+    return '';
   }, [values]);
 
   return (
-    <tr className={classNames(styles.event, {}, [className])}>
+    <tr className={classNames(styles.event, [className])} style={{ borderTop: index !== 0 ? 0 : '' }}>
       <td>
-        <p className={classNames('', mods, [className])}>{index === 0 ? name : ''}</p>
+        <p className={classNames('', nameMods, [className])}>{index === 0 ? name : ''}</p>
       </td>
       <td>
         {details}

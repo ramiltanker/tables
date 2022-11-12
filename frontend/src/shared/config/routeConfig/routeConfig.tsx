@@ -4,7 +4,7 @@ import { RouteProps } from 'react-router-dom';
 
 export enum AppRoutes {
   HOME_PAGE = 'main',
-  HISTORY_PAGE = 'address',
+  HISTORY_PAGE = 'history',
   NOT_FOUND = 'not-found'
 }
 
@@ -20,7 +20,7 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     element: <HomePageAsync />
   },
   [AppRoutes.HISTORY_PAGE]: {
-    path: RoutePath.address,
+    path: RoutePath.history,
     element: <HistoryPage />
   },
   [AppRoutes.NOT_FOUND]: {

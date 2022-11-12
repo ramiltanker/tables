@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
-import { EventItem, EventsResponse } from '../../types/events';
+import { EventsResponse } from '../../types/events';
 
 // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 export const fetchEventsData = createAsyncThunk<EventsResponse, void, ThunkConfig<string>>(

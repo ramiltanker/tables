@@ -3,9 +3,7 @@ import styles from './Text.module.scss';
 import classNames from 'classnames';
 
 export enum TextColor {
-  WHITE = 'white',
   BLACK = 'black',
-  GRAY = 'gray',
   RED = 'red'
 }
 
@@ -33,7 +31,7 @@ const Text = memo(
     className,
     children,
     size = TextSize.SIZE_S,
-    color = TextColor.WHITE,
+    color = TextColor.BLACK,
     weight = TextWeight.WEIGHT_500
   }: TextProps) => {
     const mods = {
