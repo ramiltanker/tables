@@ -82,7 +82,6 @@ export const eventsSlice = createSlice({
       .addCase(fetchResourcesByIds.fulfilled, (state, action: PayloadAction<ResourceResponse>) => {
         state.isLoading = false;
         state.resources = action.payload.items;
-        console.log(state.resources);
       })
       .addCase(fetchResourcesByIds.rejected, (state, action) => {
         state.isLoading = false;
